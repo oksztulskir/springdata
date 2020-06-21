@@ -9,6 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+
 
 @SpringBootApplication
 public class SpringdataApplication implements CommandLineRunner {
@@ -30,12 +34,20 @@ public class SpringdataApplication implements CommandLineRunner {
 		LOGGER.info("Spring Boot Application started successfuly!");
 		LOGGER.trace("Trace: Spring Boot Application started successfuly!");
 
-		User user1 = new User("Kowalski", "jkowalski");
-		User user2 = new User("Nowak", "anowak");
+		User user1 = new User("Kowalski", "xx");
+		User user2 = new User("Nowak", "xx");
+		User user3 = new User("Nowik", "xx");
+		User user4 = new User("Kowalska", "xx");
 
 		userRepository.save(user1);
 		userRepository.save(user2);
+		userRepository.save(user3);
+		userRepository.save(user4);
 
 		System.out.println(userRepository.findByLogin("jkowalski"));
+		System.out.println(userRepository.findByLoginAndName("jkowalski", "Kowalski"));
+
+		Pageable pageable = PageRequest.of(0, 3, Sort.by(Sort.Direction.ASC, "name", "login"));
+		System.out.println(userRepository.findByLogin("xx", pageable).getContent());
 	}
 }
