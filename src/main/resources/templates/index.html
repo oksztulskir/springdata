@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org ">
+<head>
+    <meta charset="UTF-8">
+    <title>Users Management Page</title>
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.5/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen"/>
+
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+            th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+</head>
+<body>
+    <div class="container">
+        <table>
+            <tr>
+                <td><h2>Name</h2></td>
+                <td><h2>Login</h2></td>
+                <td><h2>Akcje</h2></td>
+            </tr>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.name}"/>
+                <td th:text="${user.login}"/>
+                <td><a th:href="'/mvc/users/' + ${user.id}">Usuń</a></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

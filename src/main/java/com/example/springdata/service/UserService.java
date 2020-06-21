@@ -26,6 +26,13 @@ public class UserService {
         return userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found!"));
     }
 
+    public User save(User user) {
+        return userRepository.save(user);
+    }
+
+    public void delete(Long id) {
+        userRepository.deleteById(id);
+    }
 
     public void setUserRepository(UserRepository userRepository) {
         this.userRepository = userRepository;

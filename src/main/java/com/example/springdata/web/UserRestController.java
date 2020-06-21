@@ -31,4 +31,18 @@ public class UserRestController {
     public User findById(@PathVariable("id") Long id) {
         return userService.find(id);
     }
+
+    // POST http://localhost:8088/user
+    @PostMapping
+    @ResponseBody
+    public User save(@RequestBody User user) {
+        return userService.save(user);
+    }
+
+    // PUT http://localhost:8088/user
+    @PutMapping
+    @ResponseBody
+    public User update(@RequestBody User user) {
+        return userService.save(user);
+    }
 }
