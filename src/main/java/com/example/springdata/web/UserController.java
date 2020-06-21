@@ -2,6 +2,7 @@ package com.example.springdata.web;
 
 import com.example.springdata.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +22,7 @@ public class UserController {
     }
 
     @GetMapping
+    @Secured({"USER", "ADMIN"})
     public String index(Model model) {
         model.addAttribute("users", userService.findAll());
 
@@ -28,10 +30,20 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
+    @Secured("ADMIN")
     public String deleteUser(@PathVariable Long id, Model model) {
         userService.delete(id);
         model.addAttribute("users", userService.findAll());
 
         return "index";
     }
+
+    @GetMapping("/update/{id}")
+    @Secured("ADMIN")
+    public String update(@PathVariable Long id, Model model) {
+//        model.addAttribute("user", userService.)
+        return "updateUser";
+    }
+
+
 }

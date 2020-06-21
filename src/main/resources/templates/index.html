@@ -22,7 +22,10 @@
             <tr th:each="user : ${users}">
                 <td th:text="${user.name}"/>
                 <td th:text="${user.login}"/>
-                <td><a th:href="'/mvc/users/' + ${user.id}">Usuń</a></td>
+                <td>
+                    <a th:href="'/mvc/users/update/' + ${user.id}">Aktualizuj</a>
+                    <a th:href="'/mvc/users/' + ${user.id}">Usuń</a>
+                </td>
             </tr>
         </table>
     </div>
