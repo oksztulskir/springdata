@@ -22,7 +22,7 @@ public class UserController {
     }
 
     @GetMapping
-    @Secured({"USER", "ADMIN"})
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
     public String index(Model model) {
         model.addAttribute("users", userService.findAll());
 
@@ -30,7 +30,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    @Secured("ADMIN")
+    @Secured("ROLE_ADMIN")
     public String deleteUser(@PathVariable Long id, Model model) {
         userService.delete(id);
         model.addAttribute("users", userService.findAll());
@@ -39,7 +39,7 @@ public class UserController {
     }
 
     @GetMapping("/update/{id}")
-    @Secured("ADMIN")
+    @Secured("ROLE_ADMIN")
     public String update(@PathVariable Long id, Model model) {
 //        model.addAttribute("user", userService.)
         return "updateUser";
